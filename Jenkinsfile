@@ -6,6 +6,7 @@ pipeline{
     agent none
     stages {
         stage("build"){
+	    agent any
             steps {
                 sh """
                     docker build -t $IMAGE_NAME:$IMAGE_TAG  .
@@ -13,6 +14,7 @@ pipeline{
             }
         }
         stage("run"){
+	    agent any
             steps{
                 sh """
 		    docker stop $IMAGE_NAME 
