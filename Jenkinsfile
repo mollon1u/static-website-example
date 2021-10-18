@@ -29,7 +29,7 @@ pipeline{
            steps {
               script {
                 sh '''
-                    curl http://3.238.6.181:8000/ | grep -q Dimension 
+                    curl http://3.238.6.181:8000/ | grep -q It
                 '''
               }
            }
