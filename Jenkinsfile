@@ -3,7 +3,7 @@ pipeline{
        IMAGE_NAME = "website"
        IMAGE_TAG = "latest"
      }
-     agent none
+    agent none
     stages {
         stage("build"){
             steps {
@@ -31,5 +31,6 @@ pipeline{
                 '''
               }
            }
+	}
     }
 }
