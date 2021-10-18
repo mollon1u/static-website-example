@@ -1,19 +1,37 @@
 pipeline{
-    agent { label "miniprojet" }
+     environment {
+       IMAGE_NAME = "website"
+       IMAGE_TAG = "latest"
+       #STAGING = "eazytraining-staging"
+       #PRODUCTION = "eazytraining-production"
+     }
+     agent none
     stages {
         stage("build"){
             steps {
                 sh """
-                    docker build -t static-website-example .
+                    docker build -t $IMAGE_NAME:$IMAGE_TAG  .
                 """
             }
         }
         stage("run"){
             steps{
                 sh """
-                    docker run -it -d -p 8000:80 static-website-example
+		    docker stop $IMAGE_NAME 
+		    docker rm $IMAGE_NAME 
+                    docker run --name $IMAGE_NAME -d -p 8000:80 -e PORT=80 mollon1u/$IMAGE_NAME:$IMAGE_TAG
+		    sleep 5
                 """
             }
         }
+       stage('Test image') {
+           agent any
+           steps {
+              script {
+                sh '''
+                    curl http://3.238.6.181/
+                '''
+              }
+           }
     }
 }
