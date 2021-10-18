@@ -17,9 +17,7 @@ pipeline{
 	    agent any
             steps{
                 sh """
-                                     docker stop $IMAGE_NAME
-                 docker rm $IMAGE_NAME
-docker run --name $IMAGE_NAME -d -p 8000:80 -e PORT=80 $IMAGE_NAME:$IMAGE_TAG
+		    docker run --name $IMAGE_NAME -d -p 8000:80 -e PORT=80 $IMAGE_NAME:$IMAGE_TAG
 		    sleep 5
                 """
             }
