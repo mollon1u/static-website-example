@@ -18,7 +18,7 @@ pipeline{
             steps{
                 sh """
 		    docker stop $IMAGE_NAME 
-		    docker rm $IMAGE_NAME 
+		    docker rm -f $IMAGE_NAME 
                     docker run --name $IMAGE_NAME -d -p 8000:80 -e PORT=80 mollon1u/$IMAGE_NAME:$IMAGE_TAG
 		    sleep 5
                 """
