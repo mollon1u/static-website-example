@@ -1,13 +1,6 @@
 pipeline{
     agent { label "miniprojet" }
     stages {
-        stage("git clone"){
-            steps {
-              sh """ 
-                    git clone https://github.com/diranetafen/static-website-example
-              """
-            }
-        }
         stage("build"){
             steps {
                 sh """
